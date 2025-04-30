@@ -1,0 +1,447 @@
+:root {
+    --primary-color: #18f;
+    --secondary-color: #005bb5;
+    --background-color: #fff;
+    --text-color: #2E3037;
+    --box-color: #f0f1f3;
+    --button-color : #f52f4a;
+}
+
+/* 헤더 팝업을 끄는 투명 오버레이 */
+.overlay_bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50; /* 메뉴 뒤, 햄버거 앞 */
+}
+
+/* 활성화되었을 때 */
+.overlay_bg.active {
+  display: block;
+}
+
+/* 전체 페이지 스타일 */
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+    max-width: 1600px;
+}
+
+/* swiper css */
+/* 메인 배너 */
+.swiper {
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: #fff;
+  opacity: 0.4;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 60px;
+  color: rgb(0, 0, 0) !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.mySwiper [class^="swiper-button-next"]{
+  top:inherit;
+  bottom: 30px;
+  right: 30px;
+}
+
+.mySwiper [class^="swiper-button-prev"]{
+  top:inherit;
+  bottom: 30px;
+  left:inherit;
+  right: 100px;
+}
+
+/* 헤더 */
+.header{
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo img{
+  max-width: 190px;
+}
+
+.header .menu_list{
+  display: flex;
+}
+
+.header .menu_list .menu{
+  padding: 6px;
+  margin-left: 40px;
+}
+
+.header .menu_list .menu a{
+  transition: 0.2s ease;
+}
+
+.header .menu_list .menu a:hover {
+  color: #99cccc;
+}
+
+/* 햄버거 버튼 기본 숨김 */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 100%;
+  background-color: #000;
+  border-radius: 2px;
+}
+
+/* 아티스트 섹션 */
+.artist_sections {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  margin-top: 100px;
+  width: 100%;
+}
+
+.title_section h1.section_title{
+  font-size: 75px;
+  padding-right: 20px;
+}
+
+.title_section p{
+  font-size: 24px;
+  color: #99cccc;
+}
+
+.artist_list {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 20px;
+}
+
+.artist_card {
+  width: 100%;
+  aspect-ratio: 300 / 420; /* 가로:세로 비율을 고정 */
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+  box-sizing: border-box;
+  margin-right: 20px;
+}
+
+.artist_card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+.gradient_overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 100%; /* 하단 절반만 */
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 100%);
+  pointer-events: none; /* 클릭 막지 않게 */
+  z-index: 10;
+}
+
+.artist_card a{
+  top: 0;
+  left: 0;
+  font-size: 24px;
+}
+
+/* 설명 텍스트 */
+.card_desc_artist {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 999;
+  font-size: 20px;
+}
+
+/* 검은색 오버레이 */
+.hover_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* hover 효과 */
+.artist_card a:hover .card_desc_artist {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.artist_card a:hover .hover_overlay {
+  opacity: 1;
+}
+
+/* 앨범 섹션 */
+.album_sections {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.album_list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5열 */
+  grid-template-rows: repeat(3, 1fr); /* 3행 */
+  gap: 20px; /* 그리드 간격 */
+  padding: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  display: block;
+}
+
+.grid-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  color: white;
+}
+
+.card_desc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column; /* 세로 정렬 */
+  align-items: center; /* 가로 중앙 정렬 */
+  justify-content: center; /* 세로 중앙 정렬 */
+  text-align: center;
+  font-size: 1.2em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  color: white;
+}
+
+.card_desc span{
+  color: #99cccc;
+  font-weight: 700;
+}
+
+/* Hover Effect */
+.grid-item:hover .hover_overlay {
+  opacity: 1;
+}
+
+.grid-item:hover .card_desc {
+  opacity: 1;
+}
+
+/* footer */
+footer{
+  background: #222;
+  padding: 30px 0;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer .footer_list{
+  display: flex;
+  justify-content: space-around;
+}
+
+footer .footer_list .footer_menu{
+  color: #fff;
+}
+
+footer .footer_group .copy{
+  margin-top: 10px;
+  color: #747474;
+}
+
+@media (max-width: 1024px) {
+  .album_list {
+      grid-template-columns: repeat(3, 1fr); /* 3열 */
+  }
+}
+
+
+@media (max-width: 900px) {
+  .header_menu_container {
+    display: flex;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: #fff;
+    border-radius: 10px;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow:  0 14px 28px rgba(0,0,0,0.25)
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-color: #fff;
+    opacity: 0.4;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 60px;
+    color: rgb(0, 0, 0) !important;
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
+  }
+
+  .mySwiper [class^="swiper-button-next"]{
+    top:inherit;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .mySwiper [class^="swiper-button-prev"]{
+    top:inherit;
+    bottom: 15px;
+    left:inherit;
+    right: 60px;
+  }
+
+  .title_section h1.section_title{
+    font-size: 36px;
+  }
+
+  .title_section p{
+    font-size: 18px;
+  }
+
+  .header_menu_container.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .header_menu_container .menu_list {
+    flex-direction: column;
+  }
+
+  .header_menu_container .menu_list .menu {
+    margin-left: 0;
+  }
+
+  .hamburger {
+      display: flex;
+  }
+
+  footer .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer_logo {
+      margin-bottom: 20px;
+  }
+
+  .footer_group {
+      text-align: center;
+  }
+
+  .footer_list {
+      justify-content: center;
+  }
+
+  .copy {
+      margin-top: 10px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .artist_sections {
+      flex-direction: column;
+  }
+  
+  .title_section h1.section_title {
+    font-size: 24px;
+  }
+
+  .title_section p{
+      font-size: 18px;
+  } 
+
+  .album_list {
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+  }
+}
+
